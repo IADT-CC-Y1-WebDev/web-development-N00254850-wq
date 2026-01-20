@@ -27,6 +27,12 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $movies = ['Cars', 'Coraline', 'Shrek', 'Shawshank Redemption', 'A monster in Paris'];
+       
+        for ($i = 0; $i < count($movies); $i++) {
+            $position = $i + 1;
+            echo "<p>movie $position: {$movies[$i]}<p/>";
+        }
         ?>
     </div>
 
@@ -42,6 +48,17 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $student = [
+            "name" => "Ryan Whelan",
+            "studentId" => "N676767",
+            "course" => "Creative Beanflicking",
+            "grade" => "A+"
+        ];
+
+        $text = "{$student['name']} is the students name. The students Id is {$student['studentId']}.
+        They are studying {$student['course']}. They have achieved an {$student['grade']}";
+
+        print ("<p>$text<p/>");
         ?>
     </div>
 
@@ -58,6 +75,20 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $countries = [
+            "England" => "London",
+            "Germany" => "Berlin",
+            "France" => "Paris",
+            "Ireland" => "Dublin",
+            "Spain" => "Madrid"
+        ];
+
+        echo "<ul>";
+        foreach ($countries as $country => $capital) {
+            echo "<li>The capital of $country is $capital</li>";
+        }
+        echo "<ul>";
+        
         ?>
     </div>
 

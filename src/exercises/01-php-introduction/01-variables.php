@@ -31,8 +31,8 @@
         $age = "19";
         $city = "Dublin";
 
-        echo "my name is $firstName $lastNameI am $age years old and I live in $city."
-
+        echo "my name is $firstName $lastName I am $age years old and I live in $city."
+        ?>
     </div>
 
     <!-- Exercise 2 -->
@@ -49,6 +49,11 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $price = 10;;
+        $quantity = 3;
+        $total = $price * $quantity;
+        $finalPrice = $total * 0.9;
+        echo "The final price is €$finalPrice"
         ?>
     </div>
 
@@ -64,6 +69,14 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $isStudent = true;
+        $hasDiscount = true;
+        $isPremiumMember = false;
+
+        echo "is student " . ($isStudent ? "Yes" : "No") . "<br>";
+        echo "has discount " . ($hasDiscount ? "Yes" : "No") . "<br>";
+        echo "is a premium member " . ($isPremiumMember ? "Yes" : "No");
+
         ?>
     </div>
 
