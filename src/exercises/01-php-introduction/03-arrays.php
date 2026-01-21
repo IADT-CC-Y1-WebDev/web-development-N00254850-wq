@@ -106,6 +106,26 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $menu = [
+    'Starter' => [
+        'Soup' => 10,
+        'Bread' => 15,
+        'Bread & Soup' => 20,
+    ],
+    'Main Course' => [
+        'Chips' => 20,
+        'Ham' => 20,
+        'Roast Chicken' => 25,
+    ],
+];
+    echo "<p>Starter:</p>";
+foreach ($menu['Starter'] as $item => $price) {
+    echo "<p>$item €$price</p>";}
+
+        echo "<p>Main Course:</p>";
+foreach ($menu['Main Course'] as $item => $price) {
+    echo "<p>$item €$price</p>";}
+
         ?>
     </div>
 
