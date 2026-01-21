@@ -106,25 +106,25 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        $Menu = [
-            'starter' => [
-                'Soup' => "10",
-                'Bread' => "10",
-                'Prawns' => "10",
-            ],
-            'main' => [
-                'Chicken' => "15",
-                'Mashed Potatoes' => "15",
-                'Rice' => "15",
-            ]
-        ];
+        $menu = [
+    'Starter' => [
+        'Soup' => 10,
+        'Bread' => 15,
+        'Bread & Soup' => 20,
+    ],
+    'Main Course' => [
+        'Chips' => 20,
+        'Ham' => 20,
+        'Roast Chicken' => 25,
+    ],
+];
+    echo "<p>Starter:</p>";
+foreach ($menu['Starter'] as $item => $price) {
+    echo "<p>$item €$price</p>";}
 
-        foreach ($Menu as $Section => $Items){
-            echo "<p>" . ucfirst($Section) . " Products: <p>";
-            foreach ($Items as $Food => $Price) {
-                echo "<p>" . ucfirst($Food) . " Price: $Price";
-            }
-        }
+        echo "<p>Main Course:</p>";
+foreach ($menu['Main Course'] as $item => $price) {
+    echo "<p>$item €$price</p>";}
 
         ?>
     </div>
