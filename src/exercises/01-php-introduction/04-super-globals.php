@@ -27,6 +27,7 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        print_r("PHP_SELF: ".$_SERVER["PHP_SELF"]);
         ?>
     </div>
 
@@ -43,6 +44,11 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $name = $_GET["name"] ?? NULL;
+
+        if ($name) {
+            print_r("Hello " . ucfirst($_GET["name"]));
+        }
         ?>
     </div>
 
