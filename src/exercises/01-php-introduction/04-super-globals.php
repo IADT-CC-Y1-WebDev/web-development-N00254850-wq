@@ -27,7 +27,10 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        print_r("PHP_SELF: ".$_SERVER["PHP_SELF"]);
+        print_r("PHP_SELF: ".$_SERVER["PHP_SELF"]."<br>");
+        print_r("REQUEST_METHOD: ".$_SERVER["REQUEST_METHOD"]."<br>");
+        print_r("HTTP_HOST: ".$_SERVER["HTTP_HOST"]."<br>");
+        print_r("HTTP_USER_AGENT: ".$_SERVER["HTTP_USER_AGENT"]."<br>");
         ?>
     </div>
 
