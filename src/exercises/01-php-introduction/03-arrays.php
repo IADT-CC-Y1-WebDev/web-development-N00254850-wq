@@ -106,6 +106,26 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        $Menu = [
+            'starter' => [
+                'Soup' => "10",
+                'Bread' => "10",
+                'Prawns' => "10",
+            ],
+            'main' => [
+                'Chicken' => "15",
+                'Mashed Potatoes' => "15",
+                'Rice' => "15",
+            ]
+        ];
+
+        foreach ($Menu as $Section => $Items){
+            echo "<p>" . ucfirst($Section) . " Products: <p>";
+            foreach ($Items as $Food => $Price) {
+                echo "<p>" . ucfirst($Food) . " Price: $Price";
+            }
+        }
+
         ?>
     </div>
 
