@@ -25,6 +25,13 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        function celsiusToFahrenheit($celsius){
+            return ($celsius * 9 / 5) + 32;
+        }
+
+        echo celsiusToFahrenheit(0) . "<br>";
+        echo celsiusToFahrenheit(25) . "<br>";
+        echo celsiusToFahrenheit(50); 
         ?>
     </div>
 
@@ -41,6 +48,10 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+    function calculateRectangleArea($width, $height){
+        return ($width * $height);
+    }
+        echo calculateRectangleArea(5, 10);
         ?>
     </div>
 
@@ -57,6 +68,17 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        function checkEvenOdd($number) {
+            if ($number % 2 == 0) {
+                print_r("Even");
+            }
+            else {
+                print_r("Odd");
+            }
+        }
+
+        checkEvenOdd(10);
+        checkEvenOdd(15);
         ?>
     </div>
 
@@ -73,6 +95,10 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
+        getArrayStats($numbers){
+            $minimum < $maximum, $average;
+            
+        }
         ?>
     </div>
 
