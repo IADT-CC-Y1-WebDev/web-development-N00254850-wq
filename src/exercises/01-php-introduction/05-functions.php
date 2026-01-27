@@ -95,10 +95,18 @@
     <div class="output">
         <?php
         // TODO: Write your solution here
-        getArrayStats($numbers){
-            $minimum < $maximum, $average;
-            
+        function getArrayStats($numbers){
+            $min = min($numbers);
+            $max = max($numbers);
+            $average = array_sum($numbers) / count($numbers);
+
+            return [$min, $max, $average];
         }
+
+        $values = [2, 3, 4, 5, 77, 6, 7, 1, 8, 9, 10];
+        [$minimum, $maximum, $avg] = getArrayStats($values);
+
+        echo "<p> The maximum number is: $maximum, the minimum is $minimum, and the average is $avg</p>";
         ?>
     </div>
 
