@@ -22,6 +22,7 @@
         <li><a href="05-functions.php">Functions</a></li>
         <li><a href="06-scope.php">Scope</a></li>
         <li><a href="07-require.php">Libraries</a></li>
+        <li><a href="08-exceptions.php">Exceptions</a></li>
     </ul>
 </body>
 </html>
