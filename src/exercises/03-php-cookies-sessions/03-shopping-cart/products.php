@@ -39,7 +39,7 @@ new Product(4, 'Hat', 14.99, 'Baseball cap');
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
 if (isset($_GET['add'])) {
-    $id = (int) $_GEY['add'];
+    $id = (int) $_GET['add'];
     $product = Product::findById($id);
     if ($product !== null) {
         $cart->add($product);
