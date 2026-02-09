@@ -31,7 +31,10 @@ $orderCompleted = false;
 // 2. Clear the cart
 // -----------------------------------------------------------------------------
 // TODO: Write your code here
-
+if (isset($_GET['complete']) and !$cart->isEmpty()) {
+    $orderCompleted = true;
+    $cart->clear();
+}
 // =============================================================================
 
 // Calculate totals
