@@ -60,6 +60,7 @@ try {
         'isbn' => $_POST['isbn'] ?? null,
         'format_ids' => $_POST['format_ids'] ?? [],
         'description' => $_POST['description'] ?? null,
+        'cover' => $_FILES['cover'] ?? null,
     ];
     dd($data);
 
@@ -75,11 +76,12 @@ try {
     $rules = [
         'title' => "required|non-empty|min:5|max:255",
         'author' => "required|non-empty|min:5|max:255",
-        'publisher_id' => "required|non-empty|min:5|integer",
+        'publisher_id' => "required|non-empty|min:1|integer",
         'year' => "required|integer|non-empty|minvalue:1900|maxvalue:" . $year,
         'isbn' => "required|non-empty|min:10|max:13",
         'format_ids' => "required|non-empty|array|min:1|max:4",
         'description' => "required|non-empty|min:5|max:255",
+        'cover' => 'required|file|image|mimes:jpg,jpeg,png|max_file_size:5242880',
     ];
     $validator = new Validator($data, $rules);
 
@@ -90,7 +92,11 @@ try {
         throw new Exception("Validation failed");
     }
 
+    $uploader = new ImageUpload();
+    $ImageFilename = $uploader->process($_FILES['cover']);
+
     echo "Validation successful!";
+
     // =========================================================================
     // STEP 9: File Uploads
     // See: /examples/04-php-forms/step-09-file-uploads/
