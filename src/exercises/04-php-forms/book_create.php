@@ -47,7 +47,7 @@ $formats = [
     ['id' => 3, 'name' => 'Ebook'],
     ['id' => 4, 'name' => 'Audiobook']
 ];
-?>
+?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,6 +55,7 @@ $formats = [
     <title>Add New Book - Exercise</title>
 </head>
 <body>
+    <?php require 'inc/flash_message.php'; ?>
     <div class="back-link">
         <a href="index.php">&larr; Back to Form Handling </a>
     </div>
