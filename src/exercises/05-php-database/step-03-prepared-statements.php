@@ -69,15 +69,17 @@ catch (PDOException $e) {
         <div class="output">
             <?php
             // TODO: Write your solution here
-            $search = 'George';
+            $search = 'Rob';
 
             $stmt = $db->prepare("SELECT * FROM books WHERE author LIKE :search");
             // 1. Prepare: SELECT * FROM books WHERE author LIKE :search
             $stmt->execute(['search' => "%$search%"]);
             // 2. Execute with ['search' => '%George%']
-            $book = $stmt->fetch();
-            if ($book) {
-                echo "<p>Author: " . htmlspecialchars($book['author']) . "</p>";
+            $books = $stmt->fetchAll();
+            if ($books) {
+                foreach ($books as $book) {
+                    echo "<p>Author: " . htmlspecialchars($book['author']) . "</p>";
+                }
             } else {
                 echo "<p>Not found</p>";
             }
