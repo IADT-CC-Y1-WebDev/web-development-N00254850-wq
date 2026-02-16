@@ -49,9 +49,29 @@ catch (PDOException $e) {
             <?php
             // TODO: Write your solution here
             // 1. Execute SELECT * FROM books ORDER BY title
+            $stmt = $db->query("SELECT * FROM books ORDER BY title");
             // 2. Fetch all results
+            $books = $stmt->fetchAll();
             // 3. Display count
+            echo "<p>Total books found: " . count($books) . "</p>";
             // 4. Create HTML table with the results
+            if ($books) {
+                echo "<table>";
+                echo "<tr><th>ID</th><th>Title</th><th>Author</th><th>Year</th><th>ISBN</th><th>Description</th></tr>";
+                foreach ($books as $book) {
+                    echo "<tr>";
+                    echo "<td>" . htmlspecialchars($book['id']) . "</td>";
+                    echo "<td>" . htmlspecialchars($book['title']) . "</td>";
+                    echo "<td>" . htmlspecialchars($book['author']) . "</td>";
+                    echo "<td>" . htmlspecialchars($book['year']) . "</td>";
+                    echo "<td>" . htmlspecialchars($book['isbn']) . "</td>";
+                    echo "<td>" . htmlspecialchars($book['description']) . "</td>";
+                    echo "</tr>";
+                }
+                echo "</table>";
+            } else {
+                echo "<p>No books found.</p>";
+            }
             ?>
         </div>
     </div>

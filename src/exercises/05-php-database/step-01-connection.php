@@ -38,6 +38,12 @@ require_once __DIR__ . '/lib/config.php';
             <?php
             // TODO: Write your solution here
             // 1. Create a PDO connection
+            try {
+                $pdo = new PDO(DB_DSN, DB_USER, DB_PASS, DB_OPTIONS);
+                echo "<p>Connection successful!</p>";
+            } catch (PDOException $e) {
+                echo "<p>Connection failed: " . $e->getMessage() . "</p>";
+            }
             // 2. Display success message
             // 3. Handle errors with try/catch
             ?>
