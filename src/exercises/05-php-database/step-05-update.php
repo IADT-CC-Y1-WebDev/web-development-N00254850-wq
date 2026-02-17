@@ -47,6 +47,17 @@ catch (PDOException $e) {
             // 3. Execute with new description + timestamp
             // 4. Check rowCount()
             // 5. Fetch and display updated book
+
+            function getBookById($id) {
+                global $db;
+
+                $stmt = $db->prepare("SELECT * FROM books WHERE id = :id");
+                $stmt->execute(['id' => $id]);
+                $book = $stmt->fetch(); 
+                return $book; 
+                
+            }
+            
             ?>
         </div>
     </div>

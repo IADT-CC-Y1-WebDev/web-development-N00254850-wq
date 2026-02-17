@@ -37,7 +37,7 @@ catch (PDOException $e) {
             <li>Get and display the new book's ID using <code>lastInsertId()</code></li>
             <li>Verify the insert using <code>rowCount()</code></li>
         </ol>
-
+    
         <h3>Book to Insert:</h3>
         <ul>
             <li>Title: "My Favorite Book"</li>
@@ -56,6 +56,32 @@ catch (PDOException $e) {
             // 3. Check rowCount() === 1
             // 4. Get lastInsertId()
             // 5. Display success message with the new ID
+
+            try {
+                $stmt = $db->prepare(
+                    "INSERT INTO books (title, author, publisher_id, year, description)
+                    VALUES (:title, :author, :publisher_id, :year, :description)
+                    ");
+
+                $stmt->execute([
+                    'title' => 'New Game Title',
+                    'author' => 'Ryano',
+                    'publisher_id' => '1',
+                    'year' => '2026',
+                    'description' => 'Testing rowCount().'   
+                ]);
+
+                if ($success = $stmt->rowCount() === 1) {
+                    echo "<p>Book inserted successfully.</p>";
+                } else {
+                    echo "<p class='error'>Failed to insert.</p>";
+                }
+
+                $newId = $db->lastInsertId();
+                echo "Game inserted successfully with ID: " . $newId;
+            } catch (PDOException $e) {
+                echo "<p class='error'>Error: " . $e->getMessage() . "</p>";
+            }
             ?>
         </div>
     </div>
