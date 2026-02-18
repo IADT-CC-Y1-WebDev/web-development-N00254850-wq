@@ -35,6 +35,12 @@
         <?php
         // TODO: Write your solution here
         // require_once __DIR__ . '/classes/Student.php';
+        require_once __DIR__ . '/classes/Student.php';
+
+        $student = new Student("Adam Caufield ", "N9994850");
+        echo $student->getName();
+        echo $student->getNumber();
+
         ?>
     </div>
 
@@ -56,6 +62,11 @@
         <?php
         // TODO: Write your solution here
         // require_once __DIR__ . '/classes/Student.php';
+        require_once __DIR__ . '/classes/Student.php';
+
+        $student = new Student("BeanFlckerBen ", "N1223344");
+        echo $student->getName();
+        echo $student->getNumber();
         ?>
     </div>
 
@@ -82,6 +93,8 @@
         // } catch (Exception $e) {
         //     echo "Error: " . $e->getMessage();
         // }
+        require_once __DIR__ . '/classes/Student.php';
+        
         ?>
     </div>
 
