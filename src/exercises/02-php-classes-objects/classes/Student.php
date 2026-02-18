@@ -1,7 +1,7 @@
 <?php
 
 
-class StudentAccount{
+class Student{
     protected $name;
     protected $number;
 
@@ -19,4 +19,3 @@ class StudentAccount{
     }
 }
 
-getName()   
