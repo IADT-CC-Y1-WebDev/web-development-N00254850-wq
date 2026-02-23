@@ -49,7 +49,7 @@ catch (PDOException $e) {
             // 5. Check rowCount()
             // 6. Try to fetch the book again to verify deletion
 
-            $stmt = $db->prepare("DELETE FROM games WHERE id = :id");
+            $stmt = $db->prepare("DELETE FROM books WHERE id = :id");
             $stmt->execute(['id' => 15]);
 
             $deleted = $stmt->rowCount();
