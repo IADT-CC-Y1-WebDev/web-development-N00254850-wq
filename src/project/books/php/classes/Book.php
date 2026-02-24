@@ -27,10 +27,11 @@ class Book
 {
     public $id;
     public $title;
-    public $release_date;
-    public $genre_id;
+    public $publisher_id;
+    public $year;
+    public $isbn;
     public $description;
-    public $image_filename;
+    public $cover_filename;
 
     private $db;
 
@@ -44,10 +45,11 @@ class Book
         if (!empty($data)) {
             $this->id = $data['id'] ?? null;
             $this->title = $data['title'] ?? null;
-            $this->release_date = $data['release_date'] ?? null;
-            $this->genre_id = $data['genre_id'] ?? null;
+            $this->publisher_id = $data['publisher_id'] ?? null;
+            $this->year = $data['year'] ?? null;
+            $this->isbn = $data['isbn'] ?? null;
             $this->description = $data['description'] ?? null;
-            $this->image_filename = $data['image_filename'] ?? null;
+            $this->cover_filename = $data['cover_filename'] ?? null;
         }
     }
 
@@ -99,8 +101,8 @@ class Book
     public static function findByGenre($genreId)
     {
         $db = DB::getInstance()->getConnection();
-        $stmt = $db->prepare("SELECT * FROM books WHERE genre_id = :genre_id ORDER BY title");
-        $stmt->execute(['genre_id' => $genreId]);
+        $stmt = $db->prepare("SELECT * FROM books WHERE publisher_id = :publisher_id ORDER BY title");
+        $stmt->execute(['publisher_id' => $genreId]);
 
         $books = [];
         while ($row = $stmt->fetch()) {
@@ -150,34 +152,34 @@ class Book
             $stmt = $this->db->prepare("
                 UPDATE books
                 SET title = :title,
-                    release_date = :release_date,
-                    genre_id = :genre_id,
+                    year = :year,
+                    publisher_id = :publisher_id,
                     description = :description,
-                    image_filename = :image_filename
+                    cover_filename = :cover_filename
                 WHERE id = :id
             ");
 
             $params = [
                 'title' => $this->title,
-                'release_date' => $this->release_date,
-                'genre_id' => $this->genre_id,
+                'year' => $this->year,
+                'publisher_id' => $this->publisher_id,
                 'description' => $this->description,
-                'image_filename' => $this->image_filename,
+                'cover_filename' => $this->cover_filename,
                 'id' => $this->id
             ];
         } else {
             // Insert new record
             $stmt = $this->db->prepare("
-                INSERT INTO books (title, release_date, genre_id, description, image_filename)
-                VALUES (:title, :release_date, :genre_id, :description, :image_filename)
+                INSERT INTO books (title, year, publisher_id, description, cover_filename)
+                VALUES (:title, :year, :publisher_id, :description, :cover_filename)
             ");
 
             $params = [
                 'title' => $this->title,
-                'release_date' => $this->release_date,
-                'genre_id' => $this->genre_id,
+                'year' => $this->year,
+                'publisher_id' => $this->publisher_id,
                 'description' => $this->description,
-                'image_filename' => $this->image_filename
+                'cover_filename' => $this->cover_filename
             ];
         }
 
@@ -234,10 +236,10 @@ class Book
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'release_date' => $this->release_date,
-            'genre_id' => $this->genre_id,
+            'year' => $this->year,
+            'publisher_id' => $this->publisher_id,
             'description' => $this->description,
-            'image_filename' => $this->image_filename
+            'cover_filename' => $this->cover_filename
         ];
     }
 }
