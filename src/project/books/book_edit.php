@@ -26,7 +26,7 @@ try {
         $bookPlatformsIds[] = $platform->id;
     }
 
-    $genres = Genre::findAll();
+    $publishers = Publisher::findAll();
     $platforms = Platform::findAll();
 }
 catch (PDOException $e) {
@@ -68,16 +68,16 @@ catch (PDOException $e) {
                         </div>
                     </div>
                     <div class="input">
-                        <label class="special" for="genre_id">Genre:</label>
+                        <label class="special" for="publisher_id">Publisher:</label>
                         <div>
-                            <select id="genre_id" name="genre_id" required>
-                                <?php foreach ($genres as $genre) { ?>
-                                    <option value="<?= h($genre->id) ?>" <?= chosen('genre_id', $genre->id, $book->genre_id) ? "selected" : "" ?>>
-                                        <?= h($genre->name) ?>
+                            <select id="publisher_id" name="publisher_id" required>
+                                <?php foreach ($publishers as $publisher) { ?>
+                                    <option value="<?= h($publisher->id) ?>" <?= chosen('publisher_id', $publisher->id, $book->publisher_id) ? "selected" : "" ?>>
+                                        <?= h($publisher->name) ?>
                                     </option>
                                 <?php } ?>
                             </select>
-                            <p><?= error('genre_id') ?></p>
+                            <p><?= error('publisher_id') ?></p>
                         </div>
                     </div>
                     <div class="input">

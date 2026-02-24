@@ -1,6 +1,6 @@
 <?php
 // Require the configuration file that defines DB_DSN, DB_USER, DB_PASS, DB_OPTIONS
-require_once __DIR__ . '/../config.php';
+require_once __DIR__ . '/../lib/config.php';
 
 /**
  * Database Singleton Class
@@ -24,12 +24,11 @@ class DB
      * Private constructor - prevents direct instantiation
      * Creates the database connection using settings from config.php
      */
-    private function __construct()
+        private function __construct()
     {
         try {
-            throw new Exception("Database connection failed: " . $e->getMessage());
+            $this->connection = new PDO(DB_DSN, DB_USER, DB_PASS, DB_OPTIONS);
         } catch (PDOException $e) {
-            // In production, you might log this error instead of displaying it
             die("Database connection failed: " . $e->getMessage());
         }
     }
