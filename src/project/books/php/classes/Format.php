@@ -59,16 +59,16 @@ class Format
     }
 
     /**
-     * Find formats by genre
+     * Find formats by publisher
      *
-     * @param int $genreId The genre ID
+     * @param int $publisherId The publisher ID
      * @return Format[] Array of Format objects
      */
-    public static function findByGenre($genreId)
+    public static function findByPublisher($publisherId)
     {
         $db = DB::getInstance()->getConnection();
-        $stmt = $db->prepare("SELECT * FROM formats WHERE genre_id = :genre_id ORDER BY name");
-        $stmt->execute(['genre_id' => $genreId]);
+        $stmt = $db->prepare("SELECT * FROM formats WHERE publisher_id = :publisher_id ORDER BY name");
+        $stmt->execute(['publisher_id' => $publisherId]);
 
         $formats = [];
         while ($row = $stmt->fetch()) {

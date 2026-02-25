@@ -14,11 +14,11 @@ try {
     }
 
     $publisher = Publisher::findById($book->publisher_id);
-    $platforms = Platform::findByBook($book->id);
+    $formats = Format::findByBook($book->id);
 
-    $platformNames = [];
-    foreach ($platforms as $platform) {
-        $platformNames[] = htmlspecialchars($platform->name);
+    $formatNames = [];
+    foreach ($formats as $format) {
+        $formatNames[] = htmlspecialchars($format->name);
     }
 } 
 catch (PDOException $e) {
@@ -42,7 +42,7 @@ catch (PDOException $e) {
             <div class="width-12">
                 <div class="hCard">
                     <div class="bottom-content">
-                        <img src="images/<?= htmlspecialchars($book->image_filename) ?>" />
+                        <img src="images/<?= htmlspecialchars($book->cover_filename) ?>" />
 
                         <div class="actions">
                             <a href="book_edit.php?id=<?= h($book->id) ?>">Edit</a> /
@@ -53,10 +53,10 @@ catch (PDOException $e) {
 
                     <div class="bottom-content">
                         <h2><?= htmlspecialchars($book->title) ?></h2>
-                        <p>Release Year: <?= htmlspecialchars($book->release_date) ?></p>
+                        <p>Release Year: <?= htmlspecialchars($book->year) ?></p>
                         <p>Publisher: <?= htmlspecialchars($publisher->name) ?></p>
                         <p>Description:<br /><?= nl2br(htmlspecialchars($book->description)) ?></p>
-                        <p>Platforms: <?= implode(', ', $platformNames) ?></p>
+                        <p>Formats: <?= implode(', ', $formatNames) ?></p>
                     </div>
                 </div>
             </div>

@@ -5,7 +5,7 @@ class ImageUpload {
 
     public function __construct($targetDir = null) {
         if ($targetDir === null) {
-            $this->targetDir = dirname(__DIR__) . '/images/';
+            $this->targetDir = dirname(__DIR__) . '/../images/';
         } else {
             $this->targetDir = $targetDir;
         }
@@ -73,7 +73,7 @@ class ImageUpload {
 
     private function generateUniqueFilename($extension) {
         do {
-            $filename = uniqid('game_', true) . '.' . $extension;
+            $filename = uniqid('book_', true) . '.' . $extension;
             $filePath = $this->targetDir . $filename;
         } while (file_exists($filePath));
 

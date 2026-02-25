@@ -20,20 +20,20 @@ try {
     // Get form data
     $data = [
         'title' => $_POST['title'] ?? null,
-        'release_date' => $_POST['release_date'] ?? null,
-        'genre_id' => $_POST['genre_id'] ?? null,
+        'year' => $_POST['year'] ?? null,
+        'publisher_id' => $_POST['publisher_id'] ?? null,
         'description' => $_POST['description'] ?? null,
-        'platform_ids' => $_POST['platform_ids'] ?? [],
+        'format_ids' => $_POST['format_ids'] ?? [],
         'image' => $_FILES['image'] ?? null
     ];
 
     // Define validation rules
     $rules = [
         'title' => 'required|notempty|min:1|max:255',
-        'release_date' => 'required|notempty',
-        'genre_id' => 'required|integer',
+        'year' => 'required|notempty',
+        'publisher_id' => 'required|integer',
         'description' => 'required|notempty|min:10|max:5000',
-        'platform_ids' => 'required|array|min:1|max:10',
+        'format_ids' => 'required|array|min:1|max:10',
         'image' => 'required|file|image|mimes:jpg,jpeg,png|max_file_size:5242880'
     ];
 
@@ -50,10 +50,10 @@ try {
     }
 
     // All validation passed - now process and save
-    // Verify genre exists
-    $genre = Genre::findById($data['genre_id']);
-    if (!$genre) {
-        throw new Exception('Selected genre does not exist.');
+    // Verify publisher exists
+    $publisher = Publisher::findById($data['publisher_id']);
+    if (!$publisher) {
+        throw new Exception('Selected publisher does not exist.');
     }
 
     // Process the uploaded image (validation already completed)
@@ -67,19 +67,19 @@ try {
     // Create new book instance
     $book = new Book();
     $book->title = $data['title'];
-    $book->release_date = $data['release_date'];
-    $book->genre_id = $data['genre_id'];
+    $book->year = $data['year'];
+    $book->publisher_id = $data['publisher_id'];
     $book->description = $data['description'];
-    $book->image_filename = $imageFilename;
+    $book->cover_filename = $imageFilename;
 
     // Save to database
     $book->save();
-    // Create platform associations
-    if (!empty($data['platform_ids']) && is_array($data['platform_ids'])) {
-        foreach ($data['platform_ids'] as $platformId) {
-            // Verify platform exists before creating relationship
-            if (Platform::findById($platformId)) {
-                BookPlatform::create($book->id, $platformId);
+    // Create format associations
+    if (!empty($data['format_ids']) && is_array($data['format_ids'])) {
+        foreach ($data['format_ids'] as $formatId) {
+            // Verify format exists before creating relationship
+            if (Format::findById($formatId)) {
+                BookFormat::create($book->id, $formatId);
             }
         }
     }

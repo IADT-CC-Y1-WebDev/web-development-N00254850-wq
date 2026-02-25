@@ -46,9 +46,9 @@ try {
     }
 
     // Delete the associated image file if it exists
-    if ($book->image_filename) {
+    if ($book->cover_filename) {
         $uploader = new ImageUpload();
-        $uploader->deleteImage($book->image_filename);
+        $uploader->deleteImage($book->cover_filename);
     }
     // Delete the book
     $book->delete();

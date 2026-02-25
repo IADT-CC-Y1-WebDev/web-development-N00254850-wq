@@ -7,8 +7,8 @@ require_once 'php/lib/utils.php';
 startSession();
 
 try {
-    $genres = Genre::findAll();
-    $platforms = Platform::findAll();
+    $publishers = Publisher::findAll();
+    $formats = Format::findAll();
 }
 catch (PDOException $e) {
     setFlashMessage('error', 'Error: ' . $e->getMessage());
@@ -39,23 +39,23 @@ catch (PDOException $e) {
                         </div>
                     </div>
                     <div class="input">
-                        <label class="special" for="release_date">Release Year:</label>
+                        <label class="special" for="year">Release year:</label>
                         <div>
-                            <input type="date" id="release_date" name="release_date" value="<?= old('release_date') ?>" required>
-                            <p><?= error('release_date') ?></p>
+                            <input type="date" id="year" name="year" value="<?= old('year') ?>" required>
+                            <p><?= error('year') ?></p>
                         </div>
                     </div>
                     <div class="input">
-                        <label class="special" for="genre_id">Genre:</label>
+                        <label class="special" for="publisher_id">Publisher:</label>
                         <div>
-                            <select id="genre_id" name="genre_id" required>
-                                <?php foreach ($genres as $genre) { ?>
-                                    <option value="<?= h($genre->id) ?>" <?= chosen('genre_id', $genre->id) ? "selected" : "" ?>>
-                                        <?= h($genre->name) ?>
+                            <select id="publisher_id" name="publisher_id" required>
+                                <?php foreach ($publishers as $publisher) { ?>
+                                    <option value="<?= h($publisher->id) ?>" <?= chosen('publisher_id', $publisher->id) ? "selected" : "" ?>>
+                                        <?= h($publisher->name) ?>
                                     </option>
                                 <?php } ?>
                             </select>
-                            <p><?= error('genre_id') ?></p>
+                            <p><?= error('publisher_id') ?></p>
                         </div>
                     </div>
                     <div class="input">
@@ -66,21 +66,21 @@ catch (PDOException $e) {
                         </div>
                     </div>
                     <div class="input">
-                        <label class="special">Platforms:</label>
+                        <label class="special">Formats:</label>
                         <div>
-                            <?php foreach ($platforms as $platform) { ?>
+                            <?php foreach ($formats as $format) { ?>
                                 <div>
                                     <input type="checkbox" 
-                                        id="platform_<?= h($platform->id) ?>" 
-                                        name="platform_ids[]" 
-                                        value="<?= h($platform->id) ?>"
-                                        <?= chosen('platform_ids', $platform->id) ? "checked" : "" ?>
+                                        id="format_<?= h($format->id) ?>" 
+                                        name="format_ids[]" 
+                                        value="<?= h($format->id) ?>"
+                                        <?= chosen('format_ids', $format->id) ? "checked" : "" ?>
                                         >
-                                    <label for="platform_<?= h($platform->id) ?>"><?= h($platform->name) ?></label>
+                                    <label for="format_<?= h($format->id) ?>"><?= h($format->name) ?></label>
                                 </div>
                             <?php } ?>
                         </div>
-                        <p><?= error('platforms_ids') ?></p>
+                        <p><?= error('formats_ids') ?></p>
                     </div>
                     <div class="input">
                         <label class="special" for="image">Image (required):</label>

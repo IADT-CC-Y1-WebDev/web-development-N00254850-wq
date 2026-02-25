@@ -44,11 +44,11 @@ catch (PDOException $e) {
                             </select>
                         </div>
                         <div>
-                            <label for="platform_filter">Platform:</label>
-                            <select id="platform_filter" name="platform_filter">
-                                <option value="">All Platforms</option>
-                                <?php foreach ($platforms as $platform) { ?>
-                                    <option value="<?= h($platform->id) ?>"><?= h($platform->name) ?></option>
+                            <label for="format_filter">Format:</label>
+                            <select id="format_filter" name="format_filter">
+                                <option value="">All Formats</option>
+                                <?php foreach ($formats as $format) { ?>
+                                    <option value="<?= h($format->id) ?>"><?= h($format->name) ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -72,7 +72,7 @@ catch (PDOException $e) {
                                 <p>Year: <?= h($book->year) ?></p>
                             </div>
                             <div class="bottom-content">
-                                <img src="images/<?= h($book->image_filename) ?>" alt="Image for <?= h($book->title) ?>" />
+                                <img src="images/<?= h($book->cover_filename) ?>" alt="Image for <?= h($book->title) ?>" />
                                 <div class="actions">
                                     <a href="book_view.php?id=<?= h($book->id) ?>">View</a>/ 
                                     <a href="book_edit.php?id=<?= h($book->id) ?>">Edit</a>/ 
