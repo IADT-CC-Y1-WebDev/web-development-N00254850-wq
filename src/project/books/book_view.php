@@ -14,12 +14,6 @@ try {
     }
 
     $publisher = Publisher::findById($book->publisher_id);
-    $platforms = Platform::findByBook($book->id);
-
-    $platformNames = [];
-    foreach ($platforms as $platform) {
-        $platformNames[] = htmlspecialchars($platform->name);
-    }
 } 
 catch (PDOException $e) {
     setFlashMessage('error', 'Error: ' . $e->getMessage());
@@ -53,10 +47,9 @@ catch (PDOException $e) {
 
                     <div class="bottom-content">
                         <h2><?= htmlspecialchars($book->title) ?></h2>
-                        <p>Release Year: <?= htmlspecialchars($book->release_date) ?></p>
+                        <p>Release Year: <?= htmlspecialchars($book->year) ?></p>
                         <p>Publisher: <?= htmlspecialchars($publisher->name) ?></p>
                         <p>Description:<br /><?= nl2br(htmlspecialchars($book->description)) ?></p>
-                        <p>Platforms: <?= implode(', ', $platformNames) ?></p>
                     </div>
                 </div>
             </div>

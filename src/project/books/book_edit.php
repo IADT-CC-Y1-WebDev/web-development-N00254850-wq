@@ -3,6 +3,7 @@ require_once 'php/lib/config.php';
 require_once 'php/lib/session.php';
 require_once 'php/lib/forms.php';
 require_once 'php/lib/utils.php';
+require_once 'php/classes/Validator.php';
 
 startSession();
 
@@ -20,14 +21,7 @@ try {
         throw new Exception("Book not found.");
     }
 
-    $bookPlatforms = Platform::findByBook($book->id);
-    $bookPlatformsIds = [];
-    foreach ($bookPlatforms as $platform) {
-        $bookPlatformsIds[] = $platform->id;
-    }
-
     $publishers = Publisher::findAll();
-    $platforms = Platform::findAll();
 }
 catch (PDOException $e) {
     setFlashMessage('error', 'Error: ' . $e->getMessage());
@@ -87,23 +81,7 @@ catch (PDOException $e) {
                             <p><?= error('description') ?></p>
                         </div>
                     </div>
-                    <div class="input">
-                        <label class="special">Platforms:</label>
-                        <div>
-                            <?php foreach ($platforms as $platform) { ?>
-                                <div>
-                                    <input type="checkbox" 
-                                        id="platform_<?= h($platform->id) ?>" 
-                                        name="platform_ids[]" 
-                                        value="<?= h($platform->id) ?>"
-                                        <?= chosen('platform_ids', $platform->id, $bookPlatformsIds) ? "checked" : "" ?>
-                                    >
-                                    <label for="platform_<?= h($platform->id) ?>"><?= h($platform->name) ?></label>
-                                </div>
-                            <?php } ?>
-                        </div>
-                        <p><?= error('platform_ids') ?></p>
-                    </div>
+                        
                     <div><img src="images/<?= h($book->image_filename) ?>" /></div>
                     <div class="input">
                         <label class="special" for="image">Image (optional):</label>
