@@ -3,10 +3,6 @@ require_once 'php/lib/config.php';
 require_once 'php/lib/session.php';
 require_once 'php/lib/forms.php';
 require_once 'php/lib/utils.php';
-<<<<<<< HEAD
-require_once 'php/classes/Validator.php';
-=======
->>>>>>> dfd7591cc3003c60befc11e780e5f1e4f2206d1d
 
 startSession();
 
@@ -24,9 +20,6 @@ try {
         throw new Exception("Book not found.");
     }
 
-<<<<<<< HEAD
-    $publishers = Publisher::findAll();
-=======
     $bookFormats = Format::findByBook($book->id);
     $bookFormatsIds = [];
     foreach ($bookFormats as $format) {
@@ -35,7 +28,6 @@ try {
 
     $publishers = Publisher::findAll();
     $formats = Format::findAll();
->>>>>>> dfd7591cc3003c60befc11e780e5f1e4f2206d1d
 }
 catch (PDOException $e) {
     setFlashMessage('error', 'Error: ' . $e->getMessage());
@@ -69,17 +61,10 @@ catch (PDOException $e) {
                         </div>
                     </div>
                     <div class="input">
-<<<<<<< HEAD
-                        <label class="special" for="release_date">Release Year:</label>
-                        <div>
-                            <input type="date" id="release_date" name="release_date" value="<?= old('release_date', $book->release_date) ?>" required>
-                            <p><?= error('release_date') ?></p>
-=======
                         <label class="special" for="year">Release Year:</label>
                         <div>
-                            <input type="date" id="year" name="year" value="<?= old('year', $book->year) ?>" required>
+                            <input type="number" id="year" name="year" value="<?= old('year', $book->year) ?>" required>
                             <p><?= error('year') ?></p>
->>>>>>> dfd7591cc3003c60befc11e780e5f1e4f2206d1d
                         </div>
                     </div>
                     <div class="input">
@@ -95,6 +80,15 @@ catch (PDOException $e) {
                             <p><?= error('publisher_id') ?></p>
                         </div>
                     </div>
+
+                    <div class="input">
+                        <label class="special" for="isbn">ISBN:<label>
+                        </div>
+                            <input type="text" name="isbn" required><?= old('isbn') ?></input>
+                            <p><?= error('isbn') ?></p>
+                        </div>
+                    </div>
+
                     <div class="input">
                         <label class="special" for="description">Description:</label>
                         <div>
@@ -102,10 +96,6 @@ catch (PDOException $e) {
                             <p><?= error('description') ?></p>
                         </div>
                     </div>
-<<<<<<< HEAD
-                        
-                    <div><img src="images/<?= h($book->image_filename) ?>" /></div>
-=======
                     <div class="input">
                         <label class="special">Formats:</label>
                         <div>
@@ -124,7 +114,6 @@ catch (PDOException $e) {
                         <p><?= error('format_ids') ?></p>
                     </div>
                     <div><img src="images/<?= h($book->cover_filename) ?>" /></div>
->>>>>>> dfd7591cc3003c60befc11e780e5f1e4f2206d1d
                     <div class="input">
                         <label class="special" for="image">Image (optional):</label>
                         <div>

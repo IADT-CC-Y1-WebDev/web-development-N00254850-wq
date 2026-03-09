@@ -3,10 +3,6 @@ require_once 'php/lib/config.php';
 require_once 'php/lib/session.php';
 require_once 'php/lib/forms.php';
 require_once 'php/lib/utils.php';
-<<<<<<< HEAD
-require_once 'php/classes/Validator.php';
-=======
->>>>>>> dfd7591cc3003c60befc11e780e5f1e4f2206d1d
 
 startSession();
 
@@ -50,15 +46,9 @@ try {
     }
 
     // Delete the associated image file if it exists
-<<<<<<< HEAD
-    if ($book->image_filename) {
-        $uploader = new ImageUpload();
-        $uploader->deleteImage($book->image_filename);
-=======
     if ($book->cover_filename) {
         $uploader = new ImageUpload();
         $uploader->deleteImage($book->cover_filename);
->>>>>>> dfd7591cc3003c60befc11e780e5f1e4f2206d1d
     }
     // Delete the book
     $book->delete();
@@ -90,3 +80,4 @@ catch (Exception $e) {
         redirect('index.php');
     }
 }
+?>

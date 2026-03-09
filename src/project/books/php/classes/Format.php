@@ -59,18 +59,6 @@ class Format
     }
 
     /**
-<<<<<<< HEAD
-     * Find formats by genre
-     *
-     * @param int $genreId The genre ID
-     * @return Format[] Array of Format objects
-     */
-    public static function findByGenre($genreId)
-    {
-        $db = DB::getInstance()->getConnection();
-        $stmt = $db->prepare("SELECT * FROM formats WHERE genre_id = :genre_id ORDER BY name");
-        $stmt->execute(['genre_id' => $genreId]);
-=======
      * Find formats by publisher
      *
      * @param int $publisherId The publisher ID
@@ -81,7 +69,6 @@ class Format
         $db = DB::getInstance()->getConnection();
         $stmt = $db->prepare("SELECT * FROM formats WHERE publisher_id = :publisher_id ORDER BY name");
         $stmt->execute(['publisher_id' => $publisherId]);
->>>>>>> dfd7591cc3003c60befc11e780e5f1e4f2206d1d
 
         $formats = [];
         while ($row = $stmt->fetch()) {
@@ -97,6 +84,29 @@ class Format
      * @param int $platformId The platform ID
      * @return Format[] Array of Format objects
      */
+
+        public static function findByBook($bookId)
+    {
+        $db = DB::getInstance()->getConnection();
+
+        $stmt = $db->prepare("
+            SELECT f.*
+            FROM formats f
+            INNER JOIN book_format bf ON f.id = bf.format_id
+            WHERE bf.book_id = :book_id
+            ORDER BY f.name
+        ");
+
+        $stmt->execute(['book_id' => $bookId]);
+
+        $formats = [];
+        while ($row = $stmt->fetch()) {
+            $formats[] = new Format($row);
+        }
+
+        return $formats;
+    }
+
     public static function findByPlatform($platformId)
     {
         $db = DB::getInstance()->getConnection();

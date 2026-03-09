@@ -3,21 +3,12 @@ require_once 'php/lib/config.php';
 require_once 'php/lib/session.php';
 require_once 'php/lib/forms.php';
 require_once 'php/lib/utils.php';
-<<<<<<< HEAD
-require_once 'php/classes/Validator.php';
-=======
->>>>>>> dfd7591cc3003c60befc11e780e5f1e4f2206d1d
 
 startSession();
 
 try {
-<<<<<<< HEAD
-    $genres = Genre::findAll();
-    $platforms = Platform::findAll();
-=======
     $publishers = Publisher::findAll();
     $formats = Format::findAll();
->>>>>>> dfd7591cc3003c60befc11e780e5f1e4f2206d1d
 }
 catch (PDOException $e) {
     setFlashMessage('error', 'Error: ' . $e->getMessage());
@@ -48,28 +39,9 @@ catch (PDOException $e) {
                         </div>
                     </div>
                     <div class="input">
-<<<<<<< HEAD
-                        <label class="special" for="release_date">Release Year:</label>
-                        <div>
-                            <input type="date" id="release_date" name="release_date" value="<?= old('release_date') ?>" required>
-                            <p><?= error('release_date') ?></p>
-                        </div>
-                    </div>
-                    <div class="input">
-                        <label class="special" for="genre_id">Genre:</label>
-                        <div>
-                            <select id="genre_id" name="genre_id" required>
-                                <?php foreach ($genres as $genre) { ?>
-                                    <option value="<?= h($genre->id) ?>" <?= chosen('genre_id', $genre->id) ? "selected" : "" ?>>
-                                        <?= h($genre->name) ?>
-                                    </option>
-                                <?php } ?>
-                            </select>
-                            <p><?= error('genre_id') ?></p>
-=======
                         <label class="special" for="year">Release year:</label>
                         <div>
-                            <input type="date" id="year" name="year" value="<?= old('year') ?>" required>
+                            <input type="number" id="year" name="year" value="<?= old('year') ?>" required>
                             <p><?= error('year') ?></p>
                         </div>
                     </div>
@@ -84,9 +56,16 @@ catch (PDOException $e) {
                                 <?php } ?>
                             </select>
                             <p><?= error('publisher_id') ?></p>
->>>>>>> dfd7591cc3003c60befc11e780e5f1e4f2206d1d
                         </div>
                     </div>
+                    <div class="input">
+                        <label class="special" for="isbn">ISBN:<label>
+                        </div>
+                            <input type="text" name="isbn" required><?= old('isbn') ?></input>
+                            <p><?= error('isbn') ?></p>
+                        </div>
+                    </div>
+
                     <div class="input">
                         <label class="special" for="description">Description:</label>
                         <div>
@@ -95,23 +74,6 @@ catch (PDOException $e) {
                         </div>
                     </div>
                     <div class="input">
-<<<<<<< HEAD
-                        <label class="special">Platforms:</label>
-                        <div>
-                            <?php foreach ($platforms as $platform) { ?>
-                                <div>
-                                    <input type="checkbox" 
-                                        id="platform_<?= h($platform->id) ?>" 
-                                        name="platform_ids[]" 
-                                        value="<?= h($platform->id) ?>"
-                                        <?= chosen('platform_ids', $platform->id) ? "checked" : "" ?>
-                                        >
-                                    <label for="platform_<?= h($platform->id) ?>"><?= h($platform->name) ?></label>
-                                </div>
-                            <?php } ?>
-                        </div>
-                        <p><?= error('platforms_ids') ?></p>
-=======
                         <label class="special">Formats:</label>
                         <div>
                             <?php foreach ($formats as $format) { ?>
@@ -127,7 +89,6 @@ catch (PDOException $e) {
                             <?php } ?>
                         </div>
                         <p><?= error('formats_ids') ?></p>
->>>>>>> dfd7591cc3003c60befc11e780e5f1e4f2206d1d
                     </div>
                     <div class="input">
                         <label class="special" for="image">Image (required):</label>
