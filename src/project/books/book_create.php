@@ -3,13 +3,21 @@ require_once 'php/lib/config.php';
 require_once 'php/lib/session.php';
 require_once 'php/lib/forms.php';
 require_once 'php/lib/utils.php';
+<<<<<<< HEAD
 require_once 'php/classes/Validator.php';
+=======
+>>>>>>> dfd7591cc3003c60befc11e780e5f1e4f2206d1d
 
 startSession();
 
 try {
+<<<<<<< HEAD
     $genres = Genre::findAll();
     $platforms = Platform::findAll();
+=======
+    $publishers = Publisher::findAll();
+    $formats = Format::findAll();
+>>>>>>> dfd7591cc3003c60befc11e780e5f1e4f2206d1d
 }
 catch (PDOException $e) {
     setFlashMessage('error', 'Error: ' . $e->getMessage());
@@ -40,6 +48,7 @@ catch (PDOException $e) {
                         </div>
                     </div>
                     <div class="input">
+<<<<<<< HEAD
                         <label class="special" for="release_date">Release Year:</label>
                         <div>
                             <input type="date" id="release_date" name="release_date" value="<?= old('release_date') ?>" required>
@@ -57,6 +66,25 @@ catch (PDOException $e) {
                                 <?php } ?>
                             </select>
                             <p><?= error('genre_id') ?></p>
+=======
+                        <label class="special" for="year">Release year:</label>
+                        <div>
+                            <input type="date" id="year" name="year" value="<?= old('year') ?>" required>
+                            <p><?= error('year') ?></p>
+                        </div>
+                    </div>
+                    <div class="input">
+                        <label class="special" for="publisher_id">Publisher:</label>
+                        <div>
+                            <select id="publisher_id" name="publisher_id" required>
+                                <?php foreach ($publishers as $publisher) { ?>
+                                    <option value="<?= h($publisher->id) ?>" <?= chosen('publisher_id', $publisher->id) ? "selected" : "" ?>>
+                                        <?= h($publisher->name) ?>
+                                    </option>
+                                <?php } ?>
+                            </select>
+                            <p><?= error('publisher_id') ?></p>
+>>>>>>> dfd7591cc3003c60befc11e780e5f1e4f2206d1d
                         </div>
                     </div>
                     <div class="input">
@@ -67,6 +95,7 @@ catch (PDOException $e) {
                         </div>
                     </div>
                     <div class="input">
+<<<<<<< HEAD
                         <label class="special">Platforms:</label>
                         <div>
                             <?php foreach ($platforms as $platform) { ?>
@@ -82,6 +111,23 @@ catch (PDOException $e) {
                             <?php } ?>
                         </div>
                         <p><?= error('platforms_ids') ?></p>
+=======
+                        <label class="special">Formats:</label>
+                        <div>
+                            <?php foreach ($formats as $format) { ?>
+                                <div>
+                                    <input type="checkbox" 
+                                        id="format_<?= h($format->id) ?>" 
+                                        name="format_ids[]" 
+                                        value="<?= h($format->id) ?>"
+                                        <?= chosen('format_ids', $format->id) ? "checked" : "" ?>
+                                        >
+                                    <label for="format_<?= h($format->id) ?>"><?= h($format->name) ?></label>
+                                </div>
+                            <?php } ?>
+                        </div>
+                        <p><?= error('formats_ids') ?></p>
+>>>>>>> dfd7591cc3003c60befc11e780e5f1e4f2206d1d
                     </div>
                     <div class="input">
                         <label class="special" for="image">Image (required):</label>

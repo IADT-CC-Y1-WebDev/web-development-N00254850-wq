@@ -14,6 +14,15 @@ try {
     }
 
     $publisher = Publisher::findById($book->publisher_id);
+<<<<<<< HEAD
+=======
+    $formats = Format::findByBook($book->id);
+
+    $formatNames = [];
+    foreach ($formats as $format) {
+        $formatNames[] = htmlspecialchars($format->name);
+    }
+>>>>>>> dfd7591cc3003c60befc11e780e5f1e4f2206d1d
 } 
 catch (PDOException $e) {
     setFlashMessage('error', 'Error: ' . $e->getMessage());
@@ -36,7 +45,11 @@ catch (PDOException $e) {
             <div class="width-12">
                 <div class="hCard">
                     <div class="bottom-content">
+<<<<<<< HEAD
                         <img src="images/<?= htmlspecialchars($book->image_filename) ?>" />
+=======
+                        <img src="images/<?= htmlspecialchars($book->cover_filename) ?>" />
+>>>>>>> dfd7591cc3003c60befc11e780e5f1e4f2206d1d
 
                         <div class="actions">
                             <a href="book_edit.php?id=<?= h($book->id) ?>">Edit</a> /
@@ -50,6 +63,10 @@ catch (PDOException $e) {
                         <p>Release Year: <?= htmlspecialchars($book->year) ?></p>
                         <p>Publisher: <?= htmlspecialchars($publisher->name) ?></p>
                         <p>Description:<br /><?= nl2br(htmlspecialchars($book->description)) ?></p>
+<<<<<<< HEAD
+=======
+                        <p>Formats: <?= implode(', ', $formatNames) ?></p>
+>>>>>>> dfd7591cc3003c60befc11e780e5f1e4f2206d1d
                     </div>
                 </div>
             </div>

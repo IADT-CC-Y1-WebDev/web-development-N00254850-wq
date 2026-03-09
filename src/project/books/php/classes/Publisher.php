@@ -59,6 +59,7 @@ class Publisher
     }
 
     /**
+<<<<<<< HEAD
      * Find publishers by genre
      *
      * @param int $genreId The genre ID
@@ -69,6 +70,18 @@ class Publisher
         $db = DB::getInstance()->getConnection();
         $stmt = $db->prepare("SELECT * FROM publishers WHERE genre_id = :genre_id ORDER BY name");
         $stmt->execute(['genre_id' => $genreId]);
+=======
+     * Find publishers by publisher
+     *
+     * @param int $publisherId The publisher ID
+     * @return Publisher[] Array of Publisher objects
+     */
+    public static function findByPublisher($publisherId)
+    {
+        $db = DB::getInstance()->getConnection();
+        $stmt = $db->prepare("SELECT * FROM publishers WHERE publisher_id = :publisher_id ORDER BY name");
+        $stmt->execute(['publisher_id' => $publisherId]);
+>>>>>>> dfd7591cc3003c60befc11e780e5f1e4f2206d1d
 
         $publishers = [];
         while ($row = $stmt->fetch()) {

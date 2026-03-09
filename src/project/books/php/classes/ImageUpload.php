@@ -5,7 +5,11 @@ class ImageUpload {
 
     public function __construct($targetDir = null) {
         if ($targetDir === null) {
+<<<<<<< HEAD
             $this->targetDir = dirname(__DIR__) . '/images/';
+=======
+            $this->targetDir = dirname(__DIR__) . '/../images/';
+>>>>>>> dfd7591cc3003c60befc11e780e5f1e4f2206d1d
         } else {
             $this->targetDir = $targetDir;
         }
@@ -73,7 +77,11 @@ class ImageUpload {
 
     private function generateUniqueFilename($extension) {
         do {
+<<<<<<< HEAD
             $filename = uniqid('game_', true) . '.' . $extension;
+=======
+            $filename = uniqid('book_', true) . '.' . $extension;
+>>>>>>> dfd7591cc3003c60befc11e780e5f1e4f2206d1d
             $filePath = $this->targetDir . $filename;
         } while (file_exists($filePath));
 

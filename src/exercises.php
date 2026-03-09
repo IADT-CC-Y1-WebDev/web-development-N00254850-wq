@@ -8,6 +8,7 @@ $topics = [
             '03-php-cookies-sessions' => 'Cookies and Sessions',
             '04-php-forms' => 'Forms',
             '05-php-database' => 'Database Access',
+            '06-php-database' => 'Database Access',
         ]
     ],
     'js' => [
