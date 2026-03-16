@@ -1,78 +1,85 @@
 <?php
+/**
+ * User Registration Handler - Exercise
+ *
+ * Follow the steps below to progressively implement form handling.
+ * Each step corresponds to an example in /examples/04-php-forms/
+ *
+ * This file processes the form submission from book_create.php
+ */
+ 
+ 
+// =============================================================================
+// Write your code here
+// =============================================================================
+// Include the required library files
 require_once 'php/lib/config.php';
 require_once 'php/lib/session.php';
 require_once 'php/lib/forms.php';
 require_once 'php/lib/utils.php';
+ 
+$data = [];
+$errors = [];
+ 
+// Start the session
 startSession();
-
+ 
+ 
 try {
-    // Initialize form data array
-    $data = [];
-    // Initialize errors array
-    $errors = [];
-
-    // Check if request is POST
+ 
+ 
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
         throw new Exception('Invalid request method.');
     }
-
-    // Get form data
+ 
     $data = [
-        'title' => $_POST['title'] ?? null,
-        'year' => $_POST['year'] ?? null,
-        'publisher_id' => $_POST['publisher_id'] ?? null,
-        'description' => $_POST['description'] ?? null,
-        'format_ids' => $_POST['format_ids'] ?? [],
-        'image' => $_FILES['image'] ?? null
+        "title" => $_POST["title"] ?? null,
+        "author" => $_POST["author"] ?? null,
+        "publisher_id" => $_POST["publisher_id"] ?? null,
+        "year" => $_POST["year"] ?? null,
+        "isbn" => $_POST["isbn"] ?? null,
+        "format_ids" => $_POST["format_ids"] ?? [],
+        "description" => $_POST["description"] ?? null,
+        "cover" => $_FILES["cover"] ?? null,
+ 
     ];
-
-    // Define validation rules
+ 
+ 
+ 
+    $year = date("Y");
     $rules = [
-        'title' => 'required|notempty|min:1|max:255',
-        'year' => 'required|notempty',
-        'publisher_id' => 'required|integer',
-        'description' => 'required|notempty|min:10|max:5000',
-        'format_ids' => 'required|array|min:1|max:10',
-        'image' => 'required|file|image|mimes:jpg,jpeg,png|max_file_size:5242880'
+        "title" => "required|noempty|min:5|max:255",
+        "author" => "required|noempty|min:5|max:255",
+        "publisher_id" => "required|noempty|integer",
+        "year" => "required|noempty|integer|minvalue:1900|maxvalue:" . $year,
+        "isbn" => "required|noempty|min:13|max:13",
+        "format_ids" => "required|noempty|array|min:1|max:4",
+        "description" => "required|noempty|min:10",
+        "cover" => "required|file|image|mimes:jpg,jpep,png|max_file_size:5242880",
+ 
     ];
-
-    // Validate all data (including file)
     $validator = new Validator($data, $rules);
-
+ 
     if ($validator->fails()) {
-        // Get first error for each field
-        foreach ($validator->errors() as $field => $fieldErrors) {
-            $errors[$field] = $fieldErrors[0];
+        foreach ($validator->errors() as $fields => $fieldErrors) {
+            $errors[$fields] = $fieldErrors[0];
         }
-
-        throw new Exception('Validation failed.');
+        throw new Exception("Validation failed");
     }
-
-    // All validation passed - now process and save
-    // Verify publisher exists
-    $publisher = Publisher::findById($data['publisher_id']);
-    if (!$publisher) {
-        throw new Exception('Selected publisher does not exist.');
-    }
-
-    // Process the uploaded image (validation already completed)
+ 
     $uploader = new ImageUpload();
-    $imageFilename = $uploader->process($_FILES['image']);
-
-    if (!$imageFilename) {
-        throw new Exception('Failed to process and save the image.');
-    }
-
-    // Create new book instance
+    $imageFilename = $uploader->process($_FILES["cover"]);
+ 
     $book = new Book();
     $book->title = $data['title'];
-    $book->year = $data['year'];
+    $book->author = $data['author'];
     $book->publisher_id = $data['publisher_id'];
+    $book->year = $data['year'];
+    $book->isbn = $data['isbn'];
     $book->description = $data['description'];
     $book->cover_filename = $imageFilename;
-
-    // Save to database
     $book->save();
+ 
     // Create format associations
     if (!empty($data['format_ids']) && is_array($data['format_ids'])) {
         foreach ($data['format_ids'] as $formatId) {
@@ -82,30 +89,20 @@ try {
             }
         }
     }
-
-    // Clear any old form data
     clearFormData();
-    // Clear any old errors
     clearFormErrors();
-
-    // Set success flash message
-    setFlashMessage('success', 'Book stored successfully.');
-
-    // Redirect to book details page
-    redirect('book_view.php?id=' . $book->id);
+   
+ 
+    setFlashMessage("success", "Form validated successfully!");
+    redirect("book_view.php?id=" . $book->id);
 }
 catch (Exception $e) {
-    // Error - clean up uploaded image
-    if (isset($imageFilename) && $imageFilename) {
-        $uploader->deleteImage($imageFilename);
-    }
-
-    // Set error flash message
-    setFlashMessage('error', 'Error: ' . $e->getMessage());
-
-    // Store form data and errors in session
-    setFormData($data);
+ 
     setFormErrors($errors);
-
-    redirect('book_create.php');
+ 
+    setFormData($data);
+ 
+    setFlashMessage("error", "Form validation failed!");
+ 
+    redirect("book_create.php");
 }
