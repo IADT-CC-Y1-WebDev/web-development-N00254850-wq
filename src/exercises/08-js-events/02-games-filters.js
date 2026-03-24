@@ -1,53 +1,64 @@
 let applyBtn = document.getElementById('apply_filters');
 let clearBtn = document.getElementById('clear_filters');
-
+ 
+let cards = document.querySelectorAll('.card');
+ 
 let form = document.getElementById("filters");
-
+ 
 applyBtn.addEventListener('click', (event) => {
     event.preventDefault();
     applyFilters();
 });
-
+ 
 clearBtn.addEventListener('click', (event) => {
     event.preventDefault();
     clearFilters();
-})
-
-function applyFilters() {
+});
+ 
+function applyFilters(){
     // console.log("Applying filters");
     let filters = getFilters();
-    let matches = [];
-    for (let i = 0; i != CanvasCaptureMediaStreamTrack.length; i++) {
+    // let matches = [];
+    for (let i = 0; i !=cards.length; i++){
         let card = cards[i];
-        matches[i] = cardMatches(card, filters);
+        let match = cardMatches(card, filters);
+        card.classList.toggle('hidden', !match);
+       
     }
 }
-
-function cardMatches(crd, fltrs) {
-    // console.log(crd.dataset.title);
-    let title = crd.dataset.title.toLowerCase().includes(fltrs.titleFilter);
-    return title.includes(fltrs.titleFilter);
+ 
+function cardMatches(crd, fltrs){
+    // console.log(crd.dataset.title, fltrs.titleFilters);
+    let title = crd.dataset.title.toLowerCase();
+    let genre = crd.dataset.genre;
+    let platform = crd.dataset.platform;
+ 
+    let matchTitle    = fltrs.titleFilter       === "" || title.includes(fltrs.titleFilter);
+    let matchGenre    = fltrs.genreFilter       === "" || genre === fltrs.genreFilter;
+    let matchPlatform = fltrs.platformFilter    === "" || platform.includes(fltrs.platformFilter);
+ 
+    return matchTitle && matchGenre && matchPlatform;
 }
-
-function getFilters() {
-    const titleE1 = form.elements['title_filter']
-    const genreE1 = form.elements['genre_filter']
-    const platformE1 = form.elements['platform_filter']
-    const sortE1 = form.elements['sort_by']
-
-    let titleFilter = (titleEl.value || '').trim().toLowerCase(); //check what the value is, inside of title. If titleE1 is for whatever reason undefined use empty
-    let genreFilter = genreE1.value || '';
-    let platformFilter = platformE1.value || '';
-    let sortBy = sortE1.value || 'title_asc';
-
-    return {
+ 
+function getFilters(){
+    const titleEl = form.elements['title_filter'];
+    const genreEl = form.elements['genre_filter'];
+    const platformEl = form.elements['platform_filter'];
+    const sortEl = form.elements['sort_by'];
+ 
+    let titleFilter = (titleEl.value || '').trim().toLowerCase();
+    let genreFilter = genreEl.value || '';
+    let platformFilter = platformEl.value || '';
+    let sortBy = sortEl.value || 'title_asc';
+ 
+    return{
         "titleFilter" : titleFilter,
         "genreFilter" : genreFilter,
         "platformFilter" : platformFilter,
         "sortBy" : sortBy
     };
 }
-
-function clearFilters() {
+ 
+function clearFilters(){
     console.log("Clearing filters");
 }
