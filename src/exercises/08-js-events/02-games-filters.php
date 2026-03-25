@@ -1,14 +1,14 @@
 <?php
 $games = [
     ['title' => 'Elden Ring', 'genre' => 'RPG', 'platform' => 'PC', 'year' => 2022],
-    ['title' => 'FIFA 23', 'genre' => 'Sports', 'platform' => 'PS5', 'year' => 2022],
+    ['title' => 'FIFA 23', 'genre' => 'Sports', 'platform' => 'PS5 Xbox', 'year' => 2022],
     ['title' => 'Portal 2', 'genre' => 'Puzzle', 'platform' => 'PC', 'year' => 2011],
     ['title' => 'Cities: Skylines II', 'genre' => 'Simulation', 'platform' => 'PC', 'year' => 2023],
     ['title' => 'The Witcher 3: Wild Hunt', 'genre' => 'RPG', 'platform' => 'PC', 'year' => 2015],
     ['title' => 'The Last of Us Part II', 'genre' => 'Action', 'platform' => 'PS5', 'year' => 2020],
     ['title' => 'The Legend of Zelda: Breath of the Wild', 'genre' => 'Action-Adventure', 'platform' => 'Nintendo Switch', 'year' => 2017],
     ['title' => 'The Elder Scrolls V: Skyrim', 'genre' => 'RPG', 'platform' => 'PC', 'year' => 2011],
-    ['title' => 'The Sims 4', 'genre' => 'Simulation', 'platform' => 'PC', 'year' => 2014],
+    ['title' => 'The Sims 4', 'genre' => 'Simulation', 'platform' => 'PC Xbox', 'year' => 2014],
 ];
 $genres = ['RPG', 'Sports', 'Puzzle', 'Simulation', 'Action', 'Action-Adventure'];
 $platforms = ['PC', 'PS5', 'Xbox', 'Nintendo Switch'];
