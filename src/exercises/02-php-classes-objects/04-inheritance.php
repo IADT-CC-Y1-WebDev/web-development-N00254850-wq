@@ -38,6 +38,12 @@
         <?php
         // TODO: Write your solution here
         // require_once __DIR__ . '/classes/Undergrad.php';
+        require_once __DIR__ . '/classes/Undergrad.php';
+
+        $Account = new Undergrad("Ryan Whelan", "N00254850", "Creative Computing", 2025);
+
+
+        echo "Name: ".$Account->getName();
         ?>
     </div>
 
@@ -59,6 +65,16 @@
         <?php
         // TODO: Write your solution here
         // require_once __DIR__ . '/classes/Undergrad.php';
+
+        require_once __DIR__ . '/classes/Undergrad.php';
+
+        $Account1 = new Undergrad("Ryan Whelan", "N00254850", "Creative Computing", 2025);
+
+
+        echo "Name: ".$Account1->getName(). "<br>";
+        echo "Number: ".$Account1->getNumber(). "<br>";
+        echo "Course: ".$Account1->getCourse(). "<br>";
+        echo "Year: ".$Account1->getYear(). "<br>";
         ?>
     </div>
 
@@ -76,6 +92,27 @@
         <?php
         // TODO: Write your solution here
         // require_once __DIR__ . '/classes/Undergrad.php';
+        require_once __DIR__ . '/classes/Undergrad.php';        
+
+        $acc1 = new Undergrad("Ryan Whelan", "N00254850", "Creative Computing", "2025");
+        $acc2 = new Undergrad("Ryan Whelan", "N02540523235", "Professional Beanflicking", "2025");
+        $acc3 = new Undergrad("Luke Murphy", "N025125236", "Putting the fries in the bag", "2025");
+
+        echo "Name: ".$acc1->getName(). "<br>";
+        echo "Number: ".$acc1->getNumber(). "<br>";
+        echo "Course: ".$acc1->getCourse(). "<br>";
+        echo "Year: ".$acc1->getYear(). "<br>";
+
+        echo "Name: ".$acc2->getName(). "<br>";
+        echo "Number: ".$acc2->getNumber(). "<br>";
+        echo "Course: ".$acc2->getCourse(). "<br>";
+        echo "Year: ".$acc2->getYear(). "<br>";
+
+         echo "Name: ".$acc3->getName(). "<br>";
+        echo "Number: ".$acc3->getNumber(). "<br>";
+        echo "Course: ".$acc3->getCourse(). "<br>";
+        echo "Year: ".$acc3->getYear(). "<br>";
+
         ?>
     </div>
 
