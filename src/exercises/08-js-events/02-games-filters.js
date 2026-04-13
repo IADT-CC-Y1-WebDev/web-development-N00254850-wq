@@ -23,8 +23,16 @@ function applyFilters(){
         let card = cards[i];
         let match = cardMatches(card, filters);
         card.classList.toggle('hidden', !match);
-       
     }
+    let cardsArray = Array.from(cards);
+    const sorted = sortCards(cardsArray, filters.sortBy);
+    sorted.forEach(card => {
+        cardsContainer.appendChild(card);
+    });
+}
+
+function sortCards(cards, sortBy) {
+    const list = cards.slice();
 }
  
 function cardMatches(crd, fltrs){
@@ -60,5 +68,15 @@ function getFilters(){
 }
  
 function clearFilters(){
-    console.log("Clearing filters");
+    form.reset();
+    // console.log("Clearing filters");
+    cards.forEach(function (card) {
+        card.classList.remove('hidden');
+    });
+
+    let cardsArray = Array.from(cards);
+    const sorted = sortCards(cardsArray, "title");
+    sorted.forEach(card => {
+        cardsContainer.appendChild(card);
+    })
 }
