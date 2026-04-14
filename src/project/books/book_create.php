@@ -39,6 +39,13 @@ catch (PDOException $e) {
                         </div>
                     </div>
                     <div class="input">
+                        <label class="special" for="author">Author:</label>
+                        <div>
+                            <input type="text" id="author" name="author" value="<?= old('author') ?>" required>
+                            <p><?= error('author') ?></p>
+                        </div>
+                    </div>
+                    <div class="input">
                         <label class="special" for="year">Release year:</label>
                         <div>
                             <input type="number" id="year" name="year" value="<?= old('year') ?>" required>
@@ -59,9 +66,9 @@ catch (PDOException $e) {
                         </div>
                     </div>
                     <div class="input">
-                        <label class="special" for="isbn">ISBN:<label>
-                        </div>
-                            <input type="text" name="isbn" required><?= old('isbn') ?></input>
+                        <label class="special" for="isbn">ISBN:</label>
+                        <div>
+                            <input type="text" id="isbn" name="isbn" value="<?= old('isbn') ?>" required>
                             <p><?= error('isbn') ?></p>
                         </div>
                     </div>
@@ -91,10 +98,10 @@ catch (PDOException $e) {
                         <p><?= error('formats_ids') ?></p>
                     </div>
                     <div class="input">
-                        <label class="special" for="image">Image (required):</label>
+                        <label class="special" for="cover">Image (required):</label>
                         <div>
-                            <input type="file" id="image" name="image" accept="image/*" required>
-                            <p><?= error('image') ?></p>
+                            <input type="file" id="cover" name="cover" accept="image/*" required>
+                            <p><?= error('cover') ?></p>
                         </div>
                     </div>
                     <div class="input">
