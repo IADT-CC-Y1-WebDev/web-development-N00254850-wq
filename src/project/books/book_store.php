@@ -76,6 +76,7 @@ try {
     $book->publisher_id = $data['publisher_id'];
     $book->year = $data['year'];
     $book->isbn = $data['isbn'];
+    $book->format_ids = $data['format_ids'];
     $book->description = $data['description'];
     $book->cover_filename = $imageFilename;
     $book->save();
