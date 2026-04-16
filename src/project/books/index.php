@@ -106,6 +106,6 @@ catch (PDOException $e) {
             <?php } ?>
         </div>
  
-        <script src="Javascript/BookFilters.js"></script>
+        <script src="Javascript/Filters.js"></script>
     </body>
 </html>

@@ -106,7 +106,21 @@ class Format
 
         return $formats;
     }
-
+    public static function findByBookId($bookId)
+    {
+        $db = DB::getInstance()->getConnection();
+ 
+        $stmt = $db->prepare("SELECT f.* FROM books b LEFT JOIN book_format bf ON bf.book_id = b.id LEFT JOIN formats f ON bf.format_id = f.id WHERE b.id = :bookId");
+        $stmt->execute(['bookId' => $bookId]);
+ 
+        $formats = [];
+        while ($row = $stmt->fetch()) {
+            $formats[] = new Format($row);
+        }
+ 
+        return $formats;
+    }
+ 
     public static function findByPlatform($platformId)
     {
         $db = DB::getInstance()->getConnection();
