@@ -1,4 +1,4 @@
-
+console.log ("workpls")
 let submitBtn = document.getElementById('submit_btn');
 let bookform = document.getElementById('book_form');
 let errorSummaryTop = document.getElementById('error_summary_top');

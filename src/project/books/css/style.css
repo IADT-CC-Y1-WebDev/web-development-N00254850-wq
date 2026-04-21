@@ -191,6 +191,10 @@ form {
 	width: 108px;
 	display: flex;
 	justify-content: flex-end;
-	color: #252525;
+	color: #ffffff;
 	font-weight: 900;
+}
+
+.white {
+	color: white;
 }

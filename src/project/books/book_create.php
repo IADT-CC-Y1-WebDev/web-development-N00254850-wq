@@ -23,33 +23,36 @@ catch (PDOException $e) {
     </head>
     <body>
         <div class="container">
-            <div class="width-12">
+            <div class="white">
+                <div class="width-12">
+            </div>
                 <?php require 'php/inc/flash_message.php'; ?>
             </div>
             <div class="width-12">
                 <h1>Create Book</h1>
             </div>
             <div class="width-12">
-                <form action="book_store.php" method="POST" enctype="multipart/form-data" novalidate>
+                <div id="error_summary_top" style="display:none; color:red;"></div>
+                <form action="book_store.php" id="book_form" method="POST" enctype="multipart/form-data" novalidate>
                     <div class="input">
                         <label class="special" for="title">Title:</label>
                         <div>
                             <input type="text" id="title" name="title" value="<?= old('title') ?>" required data-minLength="3" data-maxLength="255">
-                            <p><?= error('title') ?></p>
+                            <p id="title_error" class="error"><?= error('title') ?></p>
                         </div>
                     </div>
                     <div class="input">
                         <label class="special" for="author">Author:</label>
                         <div>
                             <input type="text" id="author" name="author" value="<?= old('author') ?>" required>
-                            <p><?= error('author') ?></p>
+                             <p id="author_error" class="error"><?= error('author') ?></p>
                         </div>
                     </div>
                     <div class="input">
                         <label class="special" for="year">Release year:</label>
                         <div>
                             <input type="number" id="year" name="year" value="<?= old('year') ?>" required>
-                            <p><?= error('year') ?></p>
+                            <p id="year_error" class="error"><?= error('year') ?></p>
                         </div>
                     </div>
                     <div class="input">
@@ -62,14 +65,14 @@ catch (PDOException $e) {
                                     </option>
                                 <?php } ?>
                             </select>
-                            <p><?= error('publisher_id') ?></p>
+                            <p id="publisher_error" class="error"><?= error('publisher_id') ?></p>
                         </div>
                     </div>
                     <div class="input">
                         <label class="special" for="isbn">ISBN:</label>
                         <div>
                             <input type="text" id="isbn" name="isbn" value="<?= old('isbn') ?>" required>
-                            <p><?= error('isbn') ?></p>
+                            <p id="isbn_error" class="error"><?= error('isbn') ?></p>
                         </div>
                     </div>
 
@@ -77,7 +80,7 @@ catch (PDOException $e) {
                         <label class="special" for="description">Description:</label>
                         <div>
                             <textarea id="description" name="description" required><?= old('description') ?></textarea>
-                            <p><?= error('description') ?></p>
+                            <p id="description_error" class="error"><?= error('description') ?></p>
                         </div>
                     </div>
                     <div class="input">
@@ -95,22 +98,25 @@ catch (PDOException $e) {
                                 </div>
                             <?php } ?>
                         </div>
-                        <p><?= error('formats_ids') ?></p>
+                        <p id="format_error" class="error"><?= error('formats_ids') ?></p>
                     </div>
                     <div class="input">
                         <label class="special" for="cover">Image (required):</label>
                         <div>
                             <input type="file" id="cover" name="cover" accept="image/*" required>
-                            <p><?= error('cover') ?></p>
+                            <p id="cover_error" class="error"><?= error('cover') ?></p>
                         </div>
                     </div>
                     <div class="input">
-                        <button  class="button" type="submit">Store Book</button>
+                        <button  class="button" id="submit_btn" type="submit">Store Book</button>
                         <div class="button"><a href="index.php">Cancel</a></div>
                     </div>
                 </form>
             </div>
         </div>
+
+        <script src="./Javascript/book_form.js"></script>
+
     </body>
 </html>
 <?php
