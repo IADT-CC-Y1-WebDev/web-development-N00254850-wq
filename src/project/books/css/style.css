@@ -3,7 +3,7 @@ body {
 	font-size: 16px;
 	font-weight: 400;
 	line-height: 1.5em;
-	background-color: #fff;
+	background-image: url("../images/bookbg.webp");
 }
 
 .cards {

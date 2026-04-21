@@ -1,3 +1,4 @@
+
 let submitBtn = document.getElementById('submit_btn');
 let bookform = document.getElementById('book_form');
 let errorSummaryTop = document.getElementById('error_summary_top');
@@ -73,7 +74,7 @@ function onSubmitForm(evt) {
     errors = {};
 
     let titleMin = titleInput.dataset.minlength || 3;
-    let titleMax = titleInput.dataset.maxlength || 255;
+    let titleMax = titleInput.dataset.maxlength || 200;
     let descMin = 10;
 
     
