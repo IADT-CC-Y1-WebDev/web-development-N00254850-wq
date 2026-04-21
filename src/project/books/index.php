@@ -14,6 +14,7 @@ catch (PDOException $e) {
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <h1 class="library">Book Library</h1>
         <?php include 'php/inc/head_content.php'; ?>
         <title>Books</title>
     </head>

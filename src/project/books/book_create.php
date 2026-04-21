@@ -29,7 +29,7 @@ catch (PDOException $e) {
                 <?php require 'php/inc/flash_message.php'; ?>
             </div>
             <div class="width-12">
-                <h1>Create Book</h1>
+                <h1 class="highlightText">Create Book</h1>
             </div>
             <div class="width-12">
                 <div id="error_summary_top" style="display:none; color:red;"></div>

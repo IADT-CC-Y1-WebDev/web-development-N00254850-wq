@@ -195,6 +195,19 @@ form {
 	font-weight: 900;
 }
 
-.white {
+.library {
+	font-family: 'math';
+	font-size: 90px;
 	color: white;
+	display: flex;
+    align-items: center;
+    flex-direction: column;
+	margin-top: 60px;
+}
+
+.highlightText {
+	color: white;
+	font-family: 'math';
+	font-size: 60px;
+	padding: 10px;
 }
