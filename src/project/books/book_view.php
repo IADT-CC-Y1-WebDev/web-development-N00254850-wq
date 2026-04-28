@@ -57,6 +57,8 @@ catch (PDOException $e) {
                         <p>Publisher: <?= htmlspecialchars($publisher->name) ?></p>
                         <p>Description:<br /><?= nl2br(htmlspecialchars($book->description)) ?></p>
                         <p>Formats: <?= implode(', ', $formatNames) ?></p>
+                        <p>ISBN: <?= htmlspecialchars($book->isbn) ?></p>
+                        <p>Author: <?= htmlspecialchars($book->author) ?></p>
                     </div>
                 </div>
             </div>
